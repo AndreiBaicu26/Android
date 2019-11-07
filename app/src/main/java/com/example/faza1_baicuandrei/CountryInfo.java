@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ public class CountryInfo extends AppCompatActivity {
     private static ArrayList<Country> favourites = new ArrayList<>();
     private CheckBox cb;
     private Country c = null;
+    Button btnFeedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,15 @@ public class CountryInfo extends AppCompatActivity {
         cb = (CheckBox) findViewById(R.id.checkBoxFav);
 
         checkIfInFavourites();
+        btnFeedback = (Button)findViewById(R.id.btnFeedback);
+
+        btnFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(getApplicationContext(), Feedback.class);
+                startActivity(it);
+            }
+        });
 
 
     }
