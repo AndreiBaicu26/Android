@@ -4,7 +4,9 @@ import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Country implements Parcelable {
+import java.util.Comparator;
+
+public class Country implements Parcelable{
     private String name;
     private long population;
     private String capital;
@@ -71,4 +73,14 @@ public class Country implements Parcelable {
     public void setCapital(String capital) {
         this.capital = capital;
     }
+
+    public static Comparator<Country> alphabetical = new Comparator<Country>() {
+
+        public int compare(Country c1, Country c2) {
+            return c1.getName().compareTo(c2.getName());
+        }
+    };
+
+
+
 }

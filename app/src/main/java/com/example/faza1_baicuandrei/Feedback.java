@@ -21,7 +21,7 @@ public class Feedback extends AppCompatActivity {
         Button btnSend = (Button)findViewById(R.id.btnSend);
         final EditText emailTxt = (EditText)findViewById(R.id.emailID);
         final EditText subjectTxt = (EditText)findViewById(R.id.subjectID);
-        EditText messageTxt = (EditText)findViewById(R.id.messageID);
+        final EditText messageTxt = (EditText)findViewById(R.id.messageID);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,9 +29,9 @@ public class Feedback extends AppCompatActivity {
                 Intent it = new Intent(Intent.ACTION_SEND);
                 it.putExtra(Intent.EXTRA_EMAIL,emailTxt.getText().toString());
                 it.putExtra(Intent.EXTRA_SUBJECT, subjectTxt.getText().toString());
-                it.putExtra(Intent.EXTRA_TEXT, subjectTxt.getText().toString());
+                it.putExtra(Intent.EXTRA_TEXT, messageTxt.getText().toString());
 
-                it.setType("message/rfc822");
+
                 startActivity(Intent.createChooser(it,"Choose your email"));
             }
         });
