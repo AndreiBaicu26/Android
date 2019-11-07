@@ -81,6 +81,29 @@ public class Country implements Parcelable{
         }
     };
 
+    public static Comparator<Country> popDesc = new Comparator<Country>() {
+
+        public int compare(Country c1, Country c2) {
+           if(c1.getPopulation() > c2.getPopulation())
+               return -1;
+           else if(c1.getPopulation() < c2.getPopulation())
+               return 1;
+           else
+               return 0;
+        }
+    };
+
+    public static Comparator<Country> popAsc = new Comparator<Country>() {
+
+        public int compare(Country c1, Country c2) {
+            if(c1.getPopulation() < c2.getPopulation())
+                return -1;
+            else if(c1.getPopulation() > c2.getPopulation())
+                return 1;
+            else
+                return 0;
+        }
+    };
 
 
 }
