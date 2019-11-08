@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnOceania = (Button) findViewById(R.id.btnOceania);
         Button btnAfrica = (Button) findViewById(R.id.btnAfrica);
         Button btnFav = (Button) findViewById(R.id.btnFav);
+        Button btnRate = (Button)findViewById(R.id.btnRate);
 
 
         btnEurope.setOnClickListener(listener);
@@ -66,7 +67,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(getApplicationContext(), Rate_Us_Fragments.class);
+                startActivity(it);
+            }
+        });
     }
 
 

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Feedback"></activity>
+        <activity android:name=".Rate_Us_Fragments"></activity>
+        <activity android:name=".Feedback" />
         <activity android:name=".Favourites" />
         <activity android:name=".CountryInfo" />
         <activity android:name=".AfisareContinent" />
