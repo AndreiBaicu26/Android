@@ -31,8 +31,8 @@ public class Feedback extends AppCompatActivity {
                 it.putExtra(Intent.EXTRA_SUBJECT, subjectTxt.getText().toString());
                 it.putExtra(Intent.EXTRA_TEXT, messageTxt.getText().toString());
 
-
-                startActivity(Intent.createChooser(it,"Choose your email"));
+                it.setType("message/rfc822");
+                startActivity(Intent.createChooser(it,"Choose your email app"));
             }
         });
     }

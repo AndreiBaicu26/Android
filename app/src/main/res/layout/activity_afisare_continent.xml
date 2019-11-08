@@ -13,8 +13,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/baloo"
         android:textAlignment="center"
-        android:textSize="23sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgContinent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +23,8 @@
 
     <ListView
         android:id="@+id/listViewCountries"
+
+
         android:layout_width="369dp"
         android:layout_height="471dp"
         android:layout_marginStart="8dp"

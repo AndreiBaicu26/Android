@@ -13,12 +13,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/baloo"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="County Name" />
+        tools:text="Country Name" />
 
     <TextView
         android:id="@+id/textView3"
@@ -73,26 +74,33 @@
 
     <CheckBox
         android:id="@+id/checkBoxFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_to_favourites"
+        android:layout_width="199dp"
+        android:layout_height="33dp"
+        android:background="@drawable/btn_round"
+
         android:onClick="onCheckboxClicked"
+        android:text="@string/add_to_favourites"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPop"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.254" />
 
     <Button
         android:id="@+id/btnFeedback"
-        android:layout_width="139dp"
+        android:layout_width="196dp"
         android:layout_height="63dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/btn_round"
         android:text="@string/send_feedback"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
