@@ -7,7 +7,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundcolor"
     tools:context=".MainActivity">
+
  <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -22,7 +24,7 @@
 
          android:text="@string/europe"
          android:background="@drawable/btn_round"
-         android:textColor="#FFFFFF"
+         android:textColor="?attr/textcolor"
          android:textSize="20sp"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintHorizontal_bias="0.501"
@@ -31,7 +33,7 @@
 
     <Button
         android:background="@drawable/btn_round"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/textcolor"
         android:textSize="20sp"
         android:id="@+id/btnNorthA"
         android:layout_width="285dp"
@@ -46,7 +48,7 @@
 
     <Button
         android:background="@drawable/btn_round"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/textcolor"
         android:textSize="20sp"
         android:id="@+id/btnSouthA"
         android:layout_width="285dp"
@@ -61,7 +63,7 @@
 
     <Button
         android:background="@drawable/btn_round"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/textcolor"
         android:textSize="20sp"
         android:id="@+id/btnAsia"
         android:layout_width="285dp"
@@ -76,7 +78,7 @@
 
     <Button
         android:background="@drawable/btn_round"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/textcolor"
         android:textSize="20sp"
         android:id="@+id/btnAfrica"
         android:layout_width="285dp"
@@ -91,7 +93,7 @@
 
      <Button
          android:background="@drawable/btn_round"
-         android:textColor="#FFFFFF"
+         android:textColor="?attr/textcolor"
          android:textSize="20sp"
          android:id="@+id/btnOceania"
          android:layout_width="285dp"
@@ -114,6 +116,7 @@
         android:layout_marginEnd="8dp"
         android:text="@string/select_a_continent"
         android:textSize="23sp"
+        android:textColor="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +124,7 @@
 
      <Button
          android:background="@drawable/btn_round"
-         android:textColor="#FFFFFF"
+         android:textColor="?attr/textcolor"
          android:textSize="20sp"
          android:id="@+id/btnFav"
          android:layout_width="285dp"
@@ -136,7 +139,7 @@
          app:layout_constraintTop_toBottomOf="@+id/btnOceania" />
     <Button
         android:background="@drawable/btn_round"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/textcolor"
         android:textSize="20sp"
         android:layout_width="285dp"
         android:layout_height="wrap_content"

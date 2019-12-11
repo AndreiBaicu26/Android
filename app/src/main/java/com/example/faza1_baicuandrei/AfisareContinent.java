@@ -1,71 +1,137 @@
 package com.example.faza1_baicuandrei;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class AfisareContinent extends AppCompatActivity {
 
     TextView title;
     ListView lv;
+    ArrayList<Country> countriesToBeDisplayed = new ArrayList<>();
+    TextView tv;
 
+    public class JSONCountry extends AsyncTask<String, Void, String> {
+        String result = null;
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            URL url = null;
+
+            try {
+                url = new URL(strings[0]);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.connect();
+                InputStream is = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+                String linie = null;
+                StringBuilder builder = new StringBuilder();
+                while ((linie = reader.readLine()) != null) {
+                    builder.append(linie);
+                }
+
+
+                String totalText = builder.toString();
+                JSONArray vectorCountries = new JSONArray(totalText);
+                for (int i = 0; i < vectorCountries.length(); i++) {
+                    JSONObject country = vectorCountries.getJSONObject(i);
+
+                    Country c = new Country(country.get("name").toString(), Long.parseLong(country.get("population").toString()), country.get("capital").toString());
+                    String st = getIntent().getExtras().getString("title");
+                    if (st.equals(country.get("region").toString()) == true) {
+                        countriesToBeDisplayed.add(c);
+                    } else if (country.get("subregion").toString().equals("Northern America") && st.equals("North America")) {
+                        countriesToBeDisplayed.add(c);
+                    } else if (country.get("subregion").toString().equals("South America") && st.equals("South America")) {
+                        countriesToBeDisplayed.add(c);
+                    }
+                }
+
+                is.close();
+
+
+            } catch (MalformedURLException | JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+
+        @Override
+        protected void onPostExecute(String s) {
+            lv = (ListView) findViewById(R.id.listViewCountries);
+            CountryAdapter adapter = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, countriesToBeDisplayed);
+            //de adaugat si poza
+            lv.setAdapter(adapter);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent it = new Intent(getApplicationContext(), CountryInfo.class);
+                    it.putExtra("country", countriesToBeDisplayed.get(position));
+                    startActivity(it);
+                }
+            });
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afisare_continent);
-
+        tv = (TextView) findViewById(R.id.tVLoading);
         showTitle();
         setimageView();
-
-
         Bundle bundle = getIntent().getExtras();
-       final  ArrayList<Country> countries = bundle.getParcelableArrayList("countries");
 
-        lv = (ListView) findViewById(R.id.listViewCountries);
-        ArrayList<String> countryNames = new ArrayList<String>();
-        Collections.sort(countries,Country.alphabetical);
+        countriesToBeDisplayed.clear();
 
+        JSONCountry jsC = new JSONCountry();
+        jsC.execute("https://restcountries.eu/rest/v2/all");
 
-        for (Country c : countries) {
-            countryNames.add(c.getName().toString());
+        while (countriesToBeDisplayed.size() == 0) {
+            tv.setVisibility(View.VISIBLE);
+
         }
-
-        for (int i = 0; i < countries.size(); i++) {
-            lv.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, countryNames) {
-            });
-        }
+        tv.setVisibility(View.INVISIBLE);
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tv = (TextView) view;
-                String countryName = tv.getText().toString();
-                Country c2 = null;
-                for (Country c : countries) {
-                    if (c.getName().equals(countryName)) {
-                        c2 = c;
-                    }
-                }
-                launchActivity(c2);
-            }
-        });
+
     }
 
     private void setimageView() {
