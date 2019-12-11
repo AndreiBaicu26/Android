@@ -13,17 +13,22 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Country> europeCountries = new ArrayList<Country>();
-    ArrayList<Country> northACountries = new ArrayList<Country>();
-    ArrayList<Country> southACountries = new ArrayList<Country>();
-    ArrayList<Country> asiaCountries = new ArrayList<Country>();
-    ArrayList<Country> oceaniaCountries = new ArrayList<Country>();
-    ArrayList<Country> africaCountries = new ArrayList<Country>();
-
+    ArrayList<Country> europeCountries = new ArrayList<>();
+    ArrayList<Country> northACountries = new ArrayList<>();
+    ArrayList<Country> southACountries = new ArrayList<>();
+    ArrayList<Country> asiaCountries = new ArrayList<>();
+    ArrayList<Country> oceaniaCountries = new ArrayList<>();
+    ArrayList<Country> africaCountries = new ArrayList<>();
+    Boolean isDark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.DarkTheme);
+        isDark = getIntent().getExtras().getBoolean("isDark");
+        if(isDark ){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        Button btnEurope = (Button) findViewById(R.id.btnEurope);
-        Button btnNorthA = (Button) findViewById(R.id.btnNorthA);
-        Button btnSouthA = (Button) findViewById(R.id.btnSouthA);
-        Button btnAsia = (Button) findViewById(R.id.btnAsia);
-        Button btnOceania = (Button) findViewById(R.id.btnOceania);
-        Button btnAfrica = (Button) findViewById(R.id.btnAfrica);
-        Button btnFav = (Button) findViewById(R.id.btnFav);
-        Button btnRate = (Button)findViewById(R.id.btnRate);
+        Button btnEurope =  findViewById(R.id.btnEurope);
+        Button btnNorthA =  findViewById(R.id.btnNorthA);
+        Button btnSouthA =  findViewById(R.id.btnSouthA);
+        Button btnAsia =  findViewById(R.id.btnAsia);
+        Button btnOceania =  findViewById(R.id.btnOceania);
+        Button btnAfrica =  findViewById(R.id.btnAfrica);
+        Button btnFav = findViewById(R.id.btnFav);
+
 
 
         btnEurope.setOnClickListener(listener);
@@ -66,17 +71,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(getApplicationContext(), Favourites.class);
+                it.putExtra("isDark",isDark );
                 startActivity(it);
             }
         });
 
-        btnRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(), Rate_Us_Fragments.class);
-                startActivity(it);
-            }
-        });
+
     }
 
 
@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     private void openActivity(String s) {
         Intent it = new Intent(this, AfisareContinent.class);
         it.putExtra("title", s);
+        it.putExtra("isDark", isDark);
         switch(s)
         {
             case "Europe":

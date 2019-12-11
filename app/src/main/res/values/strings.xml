@@ -27,4 +27,6 @@
     <string name="thank_you_for_using_our_app_please_take_a_few_moments_to_rate_the_following_aspects_about_this_app_based_on_your_feedback_we_could_improve_your_experience">Thank you for using our App! Please take a few moments to rate the following aspects about this app. Based on your feedback we could improve your experience.</string>
     <string name="avg_grade_provided">Avg. grade provided:</string>
     <string name="loading">Loading...</string>
+    <string name="capital2">Capital:</string>
+    <string name="population2">Population:</string>
 </resources>

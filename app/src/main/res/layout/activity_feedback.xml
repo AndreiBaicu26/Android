@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="?attr/backgroundcolor"
     tools:context=".Feedback">
 
     <LinearLayout
@@ -16,6 +17,7 @@
         android:padding="10dp">
 
         <TextView
+            android:textColor="?attr/textcolor"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/to"
@@ -24,6 +26,7 @@
 
 
         <EditText
+            android:textColor="?attr/textcolor"
             android:id="@+id/emailID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -41,6 +44,7 @@
 
         <TextView
             android:layout_width="wrap_content"
+            android:textColor="?attr/textcolor"
             android:layout_height="match_parent"
             android:gravity="start"
             android:text="@string/subject"
@@ -50,6 +54,7 @@
 
         <EditText
             android:id="@+id/subjectID"
+            android:textColor="?attr/textcolor"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -62,16 +67,18 @@
     <EditText
         android:id="@+id/messageID"
         android:layout_width="match_parent"
+        android:textColor="?attr/textcolor"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="15dp"
         android:hint="@string/message"
+        android:textColorHint="?attr/textcolor"
         android:gravity="top"
         android:background="@drawable/rounded_back"/>
 
         <Button
             android:background="@drawable/btn_round"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/btnTextColor"
 
             android:layout_width="150dp"
             android:layout_height="wrap_content"

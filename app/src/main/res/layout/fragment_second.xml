@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment" >
+    tools:context=".SecondFragment"
+    android:background="?attr/backgroundcolor">
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/tvIntuity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/tvDesign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingBarIntuity" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,12 +52,15 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="143dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_round"
         android:text="Submit"
+        android:textColor="?attr/btnTextColor"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,12 +90,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDesign" />
 
     <RatingBar
+
         android:id="@+id/ratingBarInfoProv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="85dp"
+        android:fadeScrollbars="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvInfo" />

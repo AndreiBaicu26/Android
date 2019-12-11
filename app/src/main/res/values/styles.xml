@@ -10,6 +10,8 @@
         <item name="backgroundcolor" >#fcfcfc</item>
         <item name="textcolor">#384647</item>
         <item name="buttoncolor" >@android:color/holo_blue_dark</item>
+        <item name ="btnTextColor">#fafafa</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <!-- Base application theme. -->
@@ -21,6 +23,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor" >#0f0f0f</item>
         <item name="textcolor">#fafafa</item>
-        <item name="buttoncolor" >@android:color/holo_blue_dark</item>
+        <item name="buttoncolor" >#2b308f</item>
+        <item name ="btnTextColor">#fafafa</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+    
+    <style name="WindowAnimationTransition">
+        <item name = "android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name = "android:windowExitAnimation">@android:anim/fade_out</item>
+
     </style>
 </resources>

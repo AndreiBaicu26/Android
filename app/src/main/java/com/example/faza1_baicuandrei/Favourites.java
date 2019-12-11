@@ -1,6 +1,7 @@
 package com.example.faza1_baicuandrei;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,12 @@ public class Favourites extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final Boolean isDark = getIntent().getExtras().getBoolean("isDark");
+        if(isDark == true){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_favourites);
@@ -35,7 +42,7 @@ public class Favourites extends AppCompatActivity {
 
         String[] elements = {"Alphabetical", "Population asc", "Population desc"};
 
-        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
+        adapter1 = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, elements);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter1);
 
@@ -43,20 +50,24 @@ public class Favourites extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
               @Override
               public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 if(isDark == true) {
+                     ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+                     ((TextView) parent.getChildAt(0)).setTextSize(17);
+                 }
                   switch (position) {
                       case 0:
                           Collections.sort(fav, Country.alphabetical);
-                          CountryAdapter adapter = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, fav);
+                          CountryAdapter adapter = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
                           lv.setAdapter(adapter);
                           break;
                       case 1:
                           Collections.sort(fav, Country.popAsc);
-                          CountryAdapter adapter2 = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, fav);
+                          CountryAdapter adapter2 = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
                           lv.setAdapter(adapter2);
                           break;
                       case 2:
                           Collections.sort(fav, Country.popDesc);
-                          CountryAdapter adapter3 = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, fav);
+                          CountryAdapter adapter3 = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
                           lv.setAdapter(adapter3);
                           break;
                       default:
@@ -68,7 +79,7 @@ public class Favourites extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                CountryAdapter adapter4 = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, fav);
+                CountryAdapter adapter4 = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
                 lv.setAdapter(adapter4);
             }
         });
@@ -80,6 +91,7 @@ public class Favourites extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent it = new Intent(getApplicationContext(), CountryInfo.class);
                 it.putExtra("country", fav.get(position));
+                it.putExtra("isDark",  getIntent().getExtras().getBoolean("isDark"));
                 startActivity(it);
 
             }
@@ -92,12 +104,12 @@ public class Favourites extends AppCompatActivity {
     private void refresh() {
         if (fav.size() > 0) {
 
-            CountryAdapter adapter = new CountryAdapter(this, R.layout.custom_list_countries, fav);
+            CountryAdapter adapter = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
             lv.setAdapter(adapter);
             tv.setTextSize(25);
             tv.setText("Your favourite countries list");
         } else {
-            CountryAdapter adapter = new CountryAdapter(this, R.layout.custom_list_countries, fav);
+            CountryAdapter adapter = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, fav);
             lv.setAdapter(adapter);
             tv.setTextSize(20);
             tv.setText("You do not have any favourite countries");
@@ -117,10 +129,5 @@ public class Favourites extends AppCompatActivity {
 
     }
 
-    private void launchActivity(Country c2) {
-        Intent it = new Intent(this, CountryInfo.class);
-        it.putExtra("country", c2);
-        startActivity(it);
-    }
 
 }

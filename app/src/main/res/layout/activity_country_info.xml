@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CountryInfo">
+    tools:context=".CountryInfo"
+    android:background="?attr/backgroundcolor">
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textViewCName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +24,7 @@
         tools:text="Country Name" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewCName" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textViewCapital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +50,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView3" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,6 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textViewPop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +79,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView5" />
 
     <CheckBox
+
         android:id="@+id/checkBoxFav"
         android:layout_width="199dp"
         android:layout_height="33dp"
@@ -80,7 +87,7 @@
 
         android:onClick="onCheckboxClicked"
         android:text="@string/add_to_favourites"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/btnTextColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +97,7 @@
         app:layout_constraintVertical_bias="0.254" />
 
     <Button
+        android:background="@drawable/btn_round"
         android:id="@+id/btnFeedback"
         android:layout_width="196dp"
         android:layout_height="63dp"
@@ -97,9 +105,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/btn_round"
         android:text="@string/send_feedback"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/btnTextColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

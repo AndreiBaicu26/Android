@@ -32,6 +32,7 @@ public class SecondFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
+
         View v= inflater.inflate(R.layout.fragment_second, container, false);
         rbInfo = (RatingBar)v.findViewById(R.id.ratingBarInfoProv);
         rbDesign = (RatingBar) v.findViewById((R.id.ratingBarDesign));

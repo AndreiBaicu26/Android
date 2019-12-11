@@ -12,29 +12,32 @@
         android:orientation="vertical">
 
         <TextView
+            android:textColor="?attr/textcolor"
             android:id="@+id/cnameID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="test"
             android:textSize="22sp"
             android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
             <TextView
+                android:textColor="?attr/textcolor"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/cCapitalID"
                 android:layout_weight="1"
-                android:text="Capital: "
+                android:text="@string/capital2"
                 android:textSize="17sp"/>
             <TextView
+                android:textColor="?attr/textcolor"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/cPopID"
                 android:layout_weight="0.8"
-                android:text="Population: "
+                android:text="@string/population2"
                 android:textSize="17sp"/>
 
         </LinearLayout>

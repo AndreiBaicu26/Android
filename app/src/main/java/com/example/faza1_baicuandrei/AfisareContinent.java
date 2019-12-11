@@ -96,14 +96,16 @@ public class AfisareContinent extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             lv = (ListView) findViewById(R.id.listViewCountries);
-            CountryAdapter adapter = new CountryAdapter(getApplicationContext(), R.layout.custom_list_countries, countriesToBeDisplayed);
+            CountryAdapter adapter = new CountryAdapter(getBaseContext(), R.layout.custom_list_countries, countriesToBeDisplayed);
             //de adaugat si poza
             lv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent it = new Intent(getApplicationContext(), CountryInfo.class);
                     it.putExtra("country", countriesToBeDisplayed.get(position));
+                    it.putExtra("isDark",  getIntent().getExtras().getBoolean("isDark"));
                     startActivity(it);
                 }
             });
@@ -112,23 +114,23 @@ public class AfisareContinent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(getIntent().getExtras().getBoolean("isDark")){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afisare_continent);
-        tv = (TextView) findViewById(R.id.tVLoading);
+
         showTitle();
         setimageView();
-        Bundle bundle = getIntent().getExtras();
+
 
         countriesToBeDisplayed.clear();
 
         JSONCountry jsC = new JSONCountry();
         jsC.execute("https://restcountries.eu/rest/v2/all");
-
-        while (countriesToBeDisplayed.size() == 0) {
-            tv.setVisibility(View.VISIBLE);
-
-        }
-        tv.setVisibility(View.INVISIBLE);
 
 
 
@@ -161,11 +163,6 @@ public class AfisareContinent extends AppCompatActivity {
         }
     }
 
-    private void launchActivity(Country c2) {
-        Intent it = new Intent(this, CountryInfo.class);
-        it.putExtra("country", c2);
-        startActivity(it);
-    }
 
 
     private void showTitle() {

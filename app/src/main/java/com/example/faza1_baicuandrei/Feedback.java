@@ -12,16 +12,21 @@ public class Feedback extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(getIntent().getExtras().getBoolean("isDark")){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
         send();
     }
 
     private void send() {
-        Button btnSend = (Button)findViewById(R.id.btnSend);
-        final EditText emailTxt = (EditText)findViewById(R.id.emailID);
-        final EditText subjectTxt = (EditText)findViewById(R.id.subjectID);
-        final EditText messageTxt = (EditText)findViewById(R.id.messageID);
+        Button btnSend = findViewById(R.id.btnSend);
+        final EditText emailTxt = findViewById(R.id.emailID);
+        final EditText subjectTxt = findViewById(R.id.subjectID);
+        final EditText messageTxt = findViewById(R.id.messageID);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override

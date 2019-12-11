@@ -9,6 +9,12 @@ public class Rate_Us_Fragments extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(getIntent().getExtras().getBoolean("isDark")){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate__us__fragments);
 

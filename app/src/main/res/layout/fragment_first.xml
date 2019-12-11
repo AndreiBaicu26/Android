@@ -5,10 +5,12 @@
     android:id="@+id/firstFragmentID"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".FirstFragment"
+    android:background="?attr/backgroundcolor">
 
     <TextView
         android:id="@+id/tvRateUsTitle"
+        android:textColor="?attr/textcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textView6"
         android:layout_width="404dp"
         android:layout_height="115dp"
@@ -36,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRateUsTitle" />
 
     <TextView
+        android:textColor="?attr/textcolor"
         android:id="@+id/textViewAvg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

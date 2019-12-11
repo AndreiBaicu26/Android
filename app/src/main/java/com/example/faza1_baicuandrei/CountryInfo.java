@@ -19,6 +19,11 @@ public class CountryInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(getIntent().getExtras().getBoolean("isDark")){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_info);
 
@@ -43,6 +48,7 @@ public class CountryInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(getApplicationContext(), Feedback.class);
+                it.putExtra("isDark",  getIntent().getExtras().getBoolean("isDark"));
                 startActivity(it);
             }
         });
