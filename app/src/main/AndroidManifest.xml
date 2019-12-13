@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SignUpForm"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Rate_Us_Fragments" />
         <activity android:name=".Feedback" />
         <activity android:name=".Favourites" />

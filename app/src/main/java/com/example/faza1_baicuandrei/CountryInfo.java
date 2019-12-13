@@ -1,5 +1,6 @@
 package com.example.faza1_baicuandrei;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,21 +15,27 @@ import java.util.ArrayList;
 public class CountryInfo extends AppCompatActivity {
     private static ArrayList<Country> favourites = new ArrayList<>();
     private CheckBox cb;
-    private Country c = null;
+    private Country c;
     Button btnFeedback;
-
+    AppDatabase database;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(getIntent().getExtras().getBoolean("isDark")){
+        Intent it = getIntent();
+        Bundle extras = it.getExtras();
+
+        if(extras.getBoolean("isDark")){
             setTheme(R.style.DarkTheme);
         }else {
             setTheme(R.style.AppTheme);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_info);
+        database= Room.databaseBuilder(this, AppDatabase.class,"FavouriteCountries").allowMainThreadQueries().build();
 
-        Intent it = getIntent();
-        c = it.getExtras().getParcelable("country");
+        c = extras.getParcelable("country");
+        user = extras.getParcelable("user");
+
 
         TextView textViewTitle = (TextView) findViewById(R.id.textViewCName);
         TextView textViewCapital = (TextView) findViewById(R.id.textViewCapital);
@@ -67,6 +74,9 @@ public class CountryInfo extends AppCompatActivity {
         boolean checked = cb.isChecked();
 
         if (checked) {
+
+            FavouriteCountriesCrossRef fav = new FavouriteCountriesCrossRef(c.getId(),user.getId());
+            database.favouriteCountriesCrossRefDAO().insertFavCountries(fav);
             favourites.add(c);
             Toast t = Toast.makeText(this,c.getName() +" added to Favourites", Toast.LENGTH_SHORT);
             t.show();
