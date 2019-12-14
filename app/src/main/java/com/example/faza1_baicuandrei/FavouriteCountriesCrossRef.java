@@ -3,7 +3,7 @@ package com.example.faza1_baicuandrei;
 import android.arch.persistence.room.Entity;
 import android.support.annotation.NonNull;
 
-@Entity(primaryKeys = {"countryID","userID" })
+@Entity(tableName = "favourites" ,primaryKeys = {"countryID","userID" })
 public class FavouriteCountriesCrossRef {
     @NonNull
     public String countryID;

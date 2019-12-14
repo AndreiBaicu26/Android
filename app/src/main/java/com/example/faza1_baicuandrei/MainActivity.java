@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(getApplicationContext(), Favourites.class);
-                it.putExtra("isDark",isDark );
+                Bundle extras = new Bundle();
+                extras.putParcelable("user", user);
+                extras.putBoolean("isDark", isDark);
+                it.putExtras(extras);
                 startActivity(it);
             }
         });

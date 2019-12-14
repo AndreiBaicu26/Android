@@ -19,6 +19,16 @@ public class SignUpForm extends AppCompatActivity {
     Boolean worked; //daca verificarea a reusit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Intent it = getIntent();
+
+        final Boolean isDark = it.getExtras().getBoolean("isDark");
+        if(isDark){
+            setTheme(R.style.DarkTheme);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_form);
 

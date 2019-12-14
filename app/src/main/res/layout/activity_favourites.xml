@@ -50,6 +50,16 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnGetTXT"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_round"
+        android:text="Get txt file"
+        android:textColor="?attr/btnTextColor"
+        android:textSize="18sp"
+        android:onClick="onClickGetTextFile"/>
     <ListView
         android:id="@+id/favCountryList"
         android:background="?attr/backgroundcolor"

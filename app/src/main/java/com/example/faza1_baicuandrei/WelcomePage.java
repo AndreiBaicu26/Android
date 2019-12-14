@@ -4,8 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
+
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,8 +18,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
-
-import java.io.Serializable;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -130,6 +127,13 @@ public class WelcomePage extends AppCompatActivity {
             }
         });
 
+        if(connected == true){
+            btnGoToMain.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            btnGoToMain.setVisibility(View.INVISIBLE);
+        }
 
 
     }
@@ -177,7 +181,7 @@ public class WelcomePage extends AppCompatActivity {
 
     public void signUpUser(View view) {
         Intent it = new Intent(getApplicationContext(), SignUpForm.class);
-
+        it.putExtra("isDark", switchDark.isChecked());
         startActivityForResult(it, 200);
     }
 

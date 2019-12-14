@@ -131,5 +131,12 @@ public class Country implements Parcelable {
         }
     };
 
-
+    @Override
+    public String toString() {
+        return "Country{" +
+                "name='" + name + '\'' +
+                ", population=" + population +
+                ", capital='" + capital + '\'' +
+                '}';
+    }
 }
