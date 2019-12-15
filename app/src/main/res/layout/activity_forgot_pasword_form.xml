@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForgotPasswordForm"
+    android:background="?attr/backgroundcolor">
+
+    <Button
+        android:onClick="check"
+        android:id="@+id/buttonCheckUser"
+        android:layout_width="186dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="157dp"
+        android:background="@drawable/btn_round"
+        android:text="Check User"
+        android:textColor="?attr/btnTextColor"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.316"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword3" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="186dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="157dp"
+        android:background="@drawable/btn_round"
+        android:onClick="resetPassword"
+        android:text="Reset Password"
+        android:textColor="?attr/btnTextColor"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCheckUser"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <EditText
+
+        android:textColorHint="?attr/textcolor"
+        android:id="@+id/editTextEmail3"
+        android:textColor="?attr/textcolor"
+        android:layout_width="262dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="75dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        />
+
+    <EditText
+
+        android:textColor="?attr/textcolor"
+        android:id="@+id/editTextPassword3"
+        android:textColorHint="?attr/textcolor"
+        android:layout_width="262dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="75dp"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="7dp"
+        android:text="Please fill all fields below"
+        android:textColor="?attr/textcolor"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

@@ -16,7 +16,7 @@ public class SignUpForm extends AppCompatActivity {
     private AppDatabase database;
     EditText etEmail;
     EditText etPassword;
-    Boolean worked; //daca verificarea a reusit
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,31 +37,31 @@ public class SignUpForm extends AppCompatActivity {
         database= Room.databaseBuilder(this, AppDatabase.class,"FavouriteCountries").allowMainThreadQueries().build();
     }
 
-    public void insertUser(){
-        if(etEmail.getText().toString().length() > 0 && etPassword.getText().toString().length() >0) {
-            List<String> emails =database.userDao().selectEmailFromUser();
-            if ( emails!= null) {
+    public boolean insertUser() {
+        if (etEmail.getText().toString().length() > 0 && etPassword.getText().toString().length()>0) {
+            List<String> emails = database.userDao().selectEmailFromUser();
+            if (emails != null) {
                 if (database.userDao().selectEmailFromUser().contains(etEmail.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Email already exists!", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    User user = new User(0, etEmail.getText().toString(), etPassword.getText().toString());
+                    database.userDao().insertUser(user);
+                    Toast.makeText(getApplicationContext(), "Insert successful!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
 
-                Toast.makeText(getApplicationContext(), "Email already exists!", Toast.LENGTH_SHORT).show();
-                worked = false;
             } else {
-                User user = new User(0, etEmail.getText().toString(), etPassword.getText().toString());
-                database.userDao().insertUser(user);
-                Toast.makeText(getApplicationContext(), "Insert successful!", Toast.LENGTH_SHORT).show();
-                worked = true;
+                return false;
             }
 
-        }else{
-                worked = false;
-            }
         }
-
+        return false;
     }
 
     public void registerUser(View view) {
-        insertUser();
-        if(worked){
+
+        if(insertUser()){
             Intent it = new Intent(getApplicationContext(), WelcomePage.class);
             it.putExtra("Email",etEmail.getText().toString());
             it.putExtra("Password", etPassword.getText().toString());
@@ -69,4 +69,6 @@ public class SignUpForm extends AppCompatActivity {
             finish();
         }
     }
+
+
 }

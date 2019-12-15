@@ -25,8 +25,7 @@ public class WelcomePage extends AppCompatActivity {
     Switch switchDark;
     EditText etEmail;
     EditText etPassword;
-    Button btnLogIn;
-    Button btnSignUp;
+    Button btnForgotPass;
     Button btnGoToMain;
     String email;
     String password;
@@ -35,6 +34,7 @@ public class WelcomePage extends AppCompatActivity {
     Boolean connected;
     Boolean isDark;
     SharedPreferences.Editor editor = null;
+    int nrTimesPressedLogIn;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -53,7 +53,12 @@ public class WelcomePage extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
 
         database = Room.databaseBuilder(this, AppDatabase.class, "FavouriteCountries").allowMainThreadQueries().build();
-        switchDark = (Switch) findViewById(R.id.switchDark);
+        switchDark = findViewById(R.id.switchDark);
+        btnForgotPass = findViewById(R.id.btnForgotPassWord);
+        btnGoToMain = findViewById(R.id.buttonMainPage);
+        etEmail = findViewById(R.id.editTextEmail);
+        etPassword = findViewById(R.id.editTextPassword);
+        nrTimesPressedLogIn = 0;
 
         if (isDark == true) {
             switchDark.setChecked(true);
@@ -61,12 +66,9 @@ public class WelcomePage extends AppCompatActivity {
             switchDark.setChecked(false);
 
 
-        btnGoToMain = findViewById(R.id.buttonMainPage);
-        etEmail = findViewById(R.id.editTextEmail);
-        etPassword = findViewById(R.id.editTextPassword);
-
         etEmail.setText(email);
         etPassword.setText(password);
+        btnForgotPass.setVisibility(View.INVISIBLE);
 
 
         etEmail.addTextChangedListener(new TextWatcher() {
@@ -171,6 +173,7 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     public void goToMain(View view) {
+        btnForgotPass.setVisibility(View.INVISIBLE);
         Intent it = new Intent(this, MainActivity.class);
         Bundle extras = new Bundle();
         extras.putParcelable("user", user);
@@ -189,10 +192,12 @@ public class WelcomePage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == 200) {
+        if (resultCode == 200 || resultCode == 100) {
             etEmail.setText(data.getStringExtra("Email"));
             etPassword.setText((data.getStringExtra("Password")));
         }
+
+
     }
 
     public void logInUser(View view) {
@@ -206,6 +211,7 @@ public class WelcomePage extends AppCompatActivity {
                 saveSharedPrefForUser();
 
             } else {
+                nrTimesPressedLogIn++;
                 connected = false;
                 btnGoToMain.setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(), "Wrong email or password ", Toast.LENGTH_SHORT).show();
@@ -218,12 +224,30 @@ public class WelcomePage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please fill both fields", Toast.LENGTH_SHORT).show();
             saveSharedPrefForUser();
         }
+
+        if(nrTimesPressedLogIn > 3 ){
+            btnForgotPass.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     protected void onDestroy() {
         saveSharedPreference(isDark);
         saveSharedPrefForUser();
         super.onDestroy();
+    }
+
+    public void goToForgotPass(View view) {
+        Intent it = new Intent(getApplicationContext(), ForgotPasswordForm.class);
+        it.putExtra("isDark", switchDark.isChecked());
+        startActivityForResult(it, 100);
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        nrTimesPressedLogIn = 0;
     }
 }
