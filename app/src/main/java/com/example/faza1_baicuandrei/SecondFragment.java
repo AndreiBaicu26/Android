@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +34,8 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
 
         View v= inflater.inflate(R.layout.fragment_second, container, false);
         rbInfo = (RatingBar)v.findViewById(R.id.ratingBarInfoProv);
@@ -45,7 +49,14 @@ public class SecondFragment extends Fragment {
                 if(rbInfo.getRating() >0 && rbIntuity.getRating() > 0 && rbDesign.getRating()>0)
                 {
                     total =rbInfo.getRating() + rbIntuity.getRating() + rbDesign.getRating();
-                    Toast t = Toast.makeText(getContext(),"Thank you!", Toast.LENGTH_SHORT);
+                    Review rv = new Review(rbInfo.getRating(),rbDesign.getRating(),rbIntuity.getRating());
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("review");
+
+
+                    DatabaseReference nodReview = myRef.child("R-" + System.currentTimeMillis());
+                    nodReview.setValue(rv);
+                    Toast t = Toast.makeText(getContext(),"Thank you for your feedback", Toast.LENGTH_SHORT);
                     t.setGravity(Gravity.CENTER,0,0);
                     t.show();
                     FirstFragment frag = (FirstFragment) getFragmentManager().findFragmentById(R.id.firstLayout);
@@ -64,5 +75,7 @@ public class SecondFragment extends Fragment {
 
         return v;
     }
+    public void saveInFirebase(){
 
+    }
 }

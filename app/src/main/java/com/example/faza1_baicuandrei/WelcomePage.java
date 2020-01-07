@@ -201,30 +201,35 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     public void logInUser(View view) {
+
         if (etPassword.getText().toString().length() > 0 && etEmail.getText().toString().length() > 0) {
-            user = database.userDao().checkIfUserExists(etEmail.getText().toString(), etPassword.getText().toString());
-            if (user != null) {
-
-                Toast.makeText(getApplicationContext(), "welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                connected = true;
-                btnGoToMain.setVisibility(View.VISIBLE);
-                saveSharedPrefForUser();
-
+            if (etPassword.getText().toString().compareTo("admin") == 0 && etEmail.getText().toString().compareTo("admin") == 0) {
+                Intent it = new Intent(getApplicationContext(), AdminPage.class);
+                startActivity(it);
             } else {
-                nrTimesPressedLogIn++;
+                user = database.userDao().checkIfUserExists(etEmail.getText().toString(), etPassword.getText().toString());
+                if (user != null) {
+
+                    Toast.makeText(getApplicationContext(), "welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    connected = true;
+                    btnGoToMain.setVisibility(View.VISIBLE);
+                    saveSharedPrefForUser();
+
+                } else {
+                    nrTimesPressedLogIn++;
+                    connected = false;
+                    btnGoToMain.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), "Wrong email or password ", Toast.LENGTH_SHORT).show();
+                    saveSharedPrefForUser();
+                }
+            }
+            } else{
+
                 connected = false;
                 btnGoToMain.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(), "Wrong email or password ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please fill both fields", Toast.LENGTH_SHORT).show();
                 saveSharedPrefForUser();
             }
-        } else {
-
-            connected = false;
-            btnGoToMain.setVisibility(View.INVISIBLE);
-            Toast.makeText(getApplicationContext(), "Please fill both fields", Toast.LENGTH_SHORT).show();
-            saveSharedPrefForUser();
-        }
-
         if(nrTimesPressedLogIn > 3 ){
             btnForgotPass.setVisibility(View.VISIBLE);
         }

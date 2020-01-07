@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "551061310851",
+    "firebase_url": "https://countries-app-ecaba.firebaseio.com",
+    "project_id": "countries-app-ecaba",
+    "storage_bucket": "countries-app-ecaba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551061310851:android:9cdac757f5909cb5bffab6",
+        "android_client_info": {
+          "package_name": "com.example.faza1_baicuandrei"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551061310851-s74rig18gf9u9at02bouc17aug9o740t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.faza1_baicuandrei",
+            "certificate_hash": "64c999b73a7f38c766b14821f4b8a983326fdb46"
+          }
+        },
+        {
+          "client_id": "551061310851-70o316uch5o1gbf7o544uhmq5nb1eeub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyV6ZVHdow8RXgF_NfVzmW9_ycqOniKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551061310851-70o316uch5o1gbf7o544uhmq5nb1eeub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

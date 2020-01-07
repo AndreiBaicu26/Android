@@ -12,11 +12,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/baloo"
         android:textAlignment="center"
+        android:textColor="?attr/textcolor"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgContinent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +25,7 @@
         app:layout_constraintStart_toEndOf="@+id/imgContinent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.254"
-        tools:text="Titlu"
-        android:textColor="?attr/textcolor"/>
+        tools:text="Titlu" />
 
     <ListView
         android:id="@+id/listViewCountries"
