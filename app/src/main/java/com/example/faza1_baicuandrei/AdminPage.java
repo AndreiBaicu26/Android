@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,24 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         cv = findViewById((R.id.cardView1));
-        Button btn = findViewById((R.id.btnGetStat));
+
+
+        ImageView imageView = findViewById(R.id.btnImg);
+        String imageUrl = "https://cdn1.iconfinder.com/data/icons/data-science-flat-1/64/statistics-pie-chart-label-data-report-512.png";
+        Picasso.get()
+                .load(imageUrl)
+                .into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getApplicationContext(),"No internet",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();

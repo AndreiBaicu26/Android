@@ -1,10 +1,10 @@
 package com.example.faza1_baicuandrei;
 
 import android.content.Context;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.provider.CalendarContract;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class PieChart extends View {
         int range = max - min + 1;
         Paint pensula = new Paint();
         pensula.setStyle(Paint.Style.FILL);
-        float totalSum = 0;
+        float totalSum;
         float sum1 = 0;
         float sum2 = 0;
         float sum3 = 0;
@@ -39,18 +39,19 @@ public class PieChart extends View {
         sum3 = sum3/reviewList.size();
 
         totalSum = sum1 + sum2 + sum3;
-        float sume[] = {sum1,sum2,sum3};
+        float[] sume = {sum1,sum2,sum3};
 
         float completed = 0;
         pensula.setStyle(Paint.Style.FILL);
-        float sweep =0;
+        float sweep;
         int completedRect = 100;
         int bottomRect = 130;
-        for(int i = 0; i < sume.length; i ++ ){
-            sweep = 360*sume[i]/totalSum;
+
+        for(float f: sume){
+            sweep = 360*f/totalSum;
             pensula.setColor(Color.rgb((int)(Math.random()*range)%256,(int)(Math.random()*range)%256,(int)(Math.random()*range)%256));
             canvas.drawArc(500,50,850,400,completed,sweep,true,pensula);
-            canvas.drawRect(30,completedRect,60,bottomRect,pensula);
+            canvas.drawRect(70,completedRect,100,bottomRect,pensula);
 
             completed = completed + sweep;
             bottomRect = bottomRect +130 ;

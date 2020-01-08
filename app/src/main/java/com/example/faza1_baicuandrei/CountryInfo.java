@@ -90,4 +90,9 @@ public class CountryInfo extends AppCompatActivity {
         }
     }
 
+    public void goToMaps(View view) {
+        Intent it = new Intent(getApplicationContext(),LocationOfCountry.class);
+        it.putExtra("name", c.getName());
+        startActivity(it);
+    }
 }

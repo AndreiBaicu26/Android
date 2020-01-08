@@ -24,6 +24,7 @@ public class Country implements Parcelable {
     private String capital;
 
 
+
     public Country(@NonNull String id,@NonNull String name, @NonNull long population,@NonNull String capital) {
         this.id = id;
         this.name = name;

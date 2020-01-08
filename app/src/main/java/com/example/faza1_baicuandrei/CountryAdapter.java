@@ -27,16 +27,16 @@ public class CountryAdapter extends ArrayAdapter<Country> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
-
+        String s = null;
         Country c = getItem(position);
         LayoutInflater inflater =  LayoutInflater.from(getContext());
-        View v = inflater.inflate(resourceID, null);
+        View v = inflater.inflate(resourceID,null);
         TextView cName = (TextView) v.findViewById(R.id.cnameID);
         TextView cPop = (TextView) v.findViewById(R.id.cPopID);
         TextView cCapital= (TextView) v.findViewById(R.id.cCapitalID);
 
         cName.setText(c.getName());
-        String s = String.format("%,d", c.getPopulation());
+        s = String.format("%,d", c.getPopulation());
         cPop.setText(cPop.getText() + s);
         cCapital.setText(cCapital.getText() + c.getCapital());
 

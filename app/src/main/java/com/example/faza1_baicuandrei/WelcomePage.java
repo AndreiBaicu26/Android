@@ -130,6 +130,7 @@ public class WelcomePage extends AppCompatActivity {
         });
 
         if(connected == true){
+            user =  database.userDao().checkIfUserExists(etEmail.getText().toString(), etPassword.getText().toString());
             btnGoToMain.setVisibility(View.VISIBLE);
         }
         else
