@@ -178,7 +178,7 @@ public class AfisareContinent extends AppCompatActivity {
 
     private void setimageView() {
         String st = getIntent().getExtras().getString("title");
-        ImageView img = (ImageView) findViewById(R.id.imgContinent);
+        ImageView img =  findViewById(R.id.imgContinent);
         switch (st) {
             case ("Europe"):
                 img.setImageResource(R.drawable.europe);
